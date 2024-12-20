@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meme Generator</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="main-header">
+      <div class="logo">Meme Generator</div>
+      <div class="main-nav">
+        <ul>
+          <li><button class="gallary">Gallery</button></li>
+          <li><button class="saved">Saved</button></li>
+          <li><button class="randomize">Randomize</button></li>
+        </ul>
+        <div class="lang">
+          <select name="" id=""></select>
+        </div>
+      </div>
+    </header>
+
+    <section class="main-body">
+      <section class="filtering">
+        <input oninput="onFilterMeme()" type="text" class="input-meme-search" placeholder="Meme search" />
+        <div class="filterby-name-select">
+          <button class="keyword1" value="happy" onclick="onKeyWordFilter(this.value)">Happy</button>
+          <button class="keyword2" value="funny" onclick="onKeyWordFilter(this.value)">Funny</button>
+          <button class="keyword3" value="sad" onclick="onKeyWordFilter(this.value)">Sad</button>
+          <button class="keyword4" value="crazy" onclick="onKeyWordFilter(this.value)">Crazy</button>
+        </div>
+      </section>
+
+      <section class="main-body"></section>
+    </section>
+  </body>
+</html>
