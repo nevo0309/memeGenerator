@@ -31,7 +31,14 @@
           <button class="keyword4" value="crazy" onclick="onKeyWordFilter(this.value)">Crazy</button>
         </div>
       </section>
-      <canvas class="main-canvas hidden" width="480" height="480"></canvas>
+      <section class="meme-editor hidden">
+        <canvas class="main-canvas" width="480" height="480"></canvas>
+        <div class="editor">
+          <div class="text-input">
+            <input type="text" placeholder="Enter text" oninput="onTextInput(this)" />
+          </div>
+        </div>
+      </section>
       <section class="gallery"></section>
     </section>
     <section class="main-saved"></section>

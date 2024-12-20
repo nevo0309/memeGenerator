@@ -1,5 +1,7 @@
 'use strict'
 
+let gCurrentImg = null
+
 function onInit() {
   makeInvisible()
   renderGallery()
@@ -10,7 +12,8 @@ function renderGallery() {
   const elGallery = document.querySelector('.gallery')
   const strHtmls = imgs.map(
     (img) => `
-          <img onclick="onImgSelect(event, ${img.id})" src="${img.imgUrl}" alt="${img.keywords}">`
+        <img onclick="onImgSelect(event, '${img.id}')" src="${img.imgUrl}" alt="${img.keywords}">
+      `
   )
   elGallery.innerHTML = strHtmls.join('')
 }
@@ -27,5 +30,21 @@ function onOpenGallery() {
 
   renderGallery()
 }
-function onOpenGenerator() {}
-function onOpenSaved() {}
+function onOpenGenerator() {} //dont forget
+function onOpenSaved() {} //dont forget
+
+function onImgSelect(ev, imgId) {
+  document.querySelector('.gallery').classList.add('hidden')
+  document.querySelector('.meme-editor').classList.remove('hidden')
+
+  const currImg = findImg(imgId)
+  const img = new Image()
+  img.src = currImg.imgUrl
+  img.onload = () => {
+    gCurrentImg = img
+    createMeme(imgId)
+    onRenderMeme(img)
+  }
+
+  console.log('img', currImg)
+}
