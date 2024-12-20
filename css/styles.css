@@ -1,1 +1,11 @@
+/* BASICS */
+@import url('/css/basics/base.css');
+@import url('/css/basics/helpers.css');
+@import url('/css/basics/layout.css');
 
+/* COMPONENTS */
+@import url('/css/components/main-header.css');
+@import url('/css/components/logo.css');
+@import url('/css/components/main-gallery.css');
+/* MQ */
+@import url('/css/mq.css');

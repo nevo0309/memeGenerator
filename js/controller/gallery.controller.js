@@ -1,6 +1,7 @@
 'use strict'
 
 function onInit() {
+  makeInvisible()
   renderGallery()
 }
 
@@ -13,3 +14,18 @@ function renderGallery() {
   )
   elGallery.innerHTML = strHtmls.join('')
 }
+
+function makeInvisible() {
+  document.querySelector('.main-generator').classList.add('hidden')
+  document.querySelector('.main-saved').classList.add('hidden')
+}
+
+function onOpenGallery() {
+  document.querySelector('.main-generator').classList.add('hidden')
+  document.querySelector('.main-saved').classList.add('hidden')
+  document.querySelector('.main-gallery').classList.remove('hidden')
+
+  renderGallery()
+}
+function onOpenGenerator() {}
+function onOpenSaved() {}

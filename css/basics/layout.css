@@ -1,0 +1,9 @@
+body {
+  display: grid;
+  grid-template-columns: 10vw 80vw 10vw;
+  grid-auto-rows: max-content;
+}
+
+body > * {
+  grid-column: 2;
+}
