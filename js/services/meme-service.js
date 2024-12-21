@@ -1,5 +1,5 @@
 'use strict'
-let gNewHeight
+
 let gMeme = {
   selectedImgId: null,
   selectedLineIdx: 0,
@@ -27,8 +27,8 @@ function createMeme(selectedImgId) {
 }
 
 function addLine(txt = 'Enter your text') {
-  let newXLocation = getRandomIntInclusive(0, 480)
-  let newYLocation = getRandomIntInclusive(0, 480)
+  let newXLocation = getRandomIntInclusive(0, 350)
+  let newYLocation = getRandomIntInclusive(20, 350)
   const newLine = {
     txt,
     size: 20,

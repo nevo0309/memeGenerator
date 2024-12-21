@@ -6,6 +6,7 @@ function onRenderMeme(img = gCurrentImg) {
     console.error('Image is not loaded.')
     return
   }
+
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
 
@@ -13,10 +14,22 @@ function onRenderMeme(img = gCurrentImg) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 
   const meme = getMeme()
-  meme.lines.forEach((line) => {
+  meme.lines.forEach((line, idx) => {
+    // Draw text
     gCtx.font = `${line.size}px Arial`
     gCtx.fillStyle = line.color
     gCtx.fillText(line.txt, line.x, line.y)
+
+    // Draw a frame
+    const textWidth = gCtx.measureText(line.txt).width
+    const textHeight = line.size // Approximate height of text
+    const padding = 5
+
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = idx === meme.selectedLineIdx ? 'black' : 'white' // Highlight selected line
+    gCtx.strokeRect(line.x - padding, line.y - textHeight, textWidth + padding * 2, textHeight + padding * 2)
+    gCtx.fillStyle = 'rgba(0, 0, 0, 0.5)' // Background overlay
+    gCtx.fillRect(line.x - padding, line.y - textHeight, textWidth + padding * 2, textHeight + padding * 2)
   })
 }
 
@@ -37,6 +50,21 @@ function onSetColor(color) {
 
 function onAddLine() {
   addLine()
+
+  const meme = getMeme()
+  const selectedLine = meme.lines[meme.selectedLineIdx]
+  const textInput = document.querySelector('.text-input input')
+  textInput.value = selectedLine.txt
+
+  onRenderMeme()
+}
+function onSwitchLine() {
+  const meme = getMeme()
+  meme.selectedLineIdx = (meme.selectedLineIdx + 1) % meme.lines.length
+
+  const selectedLine = meme.lines[meme.selectedLineIdx]
+  const textInput = document.querySelector('.text-input input')
+  textInput.value = selectedLine.txt
   onRenderMeme()
 }
 
