@@ -48,6 +48,10 @@ function onSetColor(color) {
   onRenderMeme()
 }
 
+function onDeleteLine() {
+  deleteLine()
+  onRenderMeme()
+}
 function onAddLine() {
   addLine()
 

@@ -39,6 +39,14 @@ function addLine(txt = 'Enter your text') {
   gMeme.lines.push(newLine)
   gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
+function deleteLine() {
+  const meme = getMeme()
+  const lineIdx = meme.selectedLineIdx
+
+  if (lineIdx < 0 || lineIdx >= meme.lines.length) return
+  meme.lines.splice(lineIdx, 1)
+  console.log('Updated lines:', meme.lines)
+}
 
 function setLineTxt(txt) {
   const line = gMeme.lines[gMeme.selectedLineIdx]
