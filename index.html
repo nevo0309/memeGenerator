@@ -37,6 +37,29 @@
           <div class="text-input">
             <input type="text" placeholder="Enter text" oninput="onTextInput(this)" />
           </div>
+          <button class="add-line-btn"onclick="onAddLine()">Add Line</button>
+          <button class="add-line-btn">Change Line</button>
+
+          <button class="delete-line-btn">Delete Line</button>
+          <div class="font-editor">
+            <input type="color"  oninput="onSetColor(this.value)" />
+            <button onclick="onChangeFontSize(+1)">A +</button>
+            <button onclick="onChangeFontSize(-1)">A -</button>
+            <section custom-font>
+              <select>
+                <option value="0">Arial</option>
+                <option value="1">Verdana</option>
+                
+              </select>
+          </div>
+          <div class="inputs">
+            <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
+              <input name="img" id="imgData" type="hidden" />
+              <button class="btn" type="submit">Upload</button>
+            </form>
+            <div class="share-container"></div>
+            <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-img.jpg">Download</a>
+          </div>
         </div>
       </section>
       <section class="gallery"></section>
@@ -44,6 +67,7 @@
     <section class="main-saved"></section>
     <section class="main-generator"></section>
     <script src="js/services/util.service.js"></script>
+    <script src="js/upload.service.js"></script>
     <script src="js/services/gallery.service.js"></script>
     <script src="js/services/meme-service.js"></script>
     <script src="js/controller/gallery.controller.js"></script>

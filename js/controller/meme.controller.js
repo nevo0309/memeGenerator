@@ -24,3 +24,35 @@ function onTextInput(input) {
   setLineTxt(input.value)
   onRenderMeme()
 }
+
+function onChangeFontSize(value) {
+  setLineFontSize(value)
+  onRenderMeme()
+}
+
+function onSetColor(color) {
+  setLineColor(color)
+  onRenderMeme()
+}
+
+function onAddLine() {
+  addLine()
+  onRenderMeme()
+}
+
+function onUploadImg(ev) {
+  ev.preventDefault()
+  const canvasData = gElCanvas.toDataURL('image/jpeg')
+
+  // After a succesful upload, allow the user to share on Facebook
+  function onSuccess(uploadedImgUrl) {
+    const encodedUploadedImgUrl = encodeURIComponent(uploadedImgUrl)
+    console.log('encodedUploadedImgUrl:', encodedUploadedImgUrl)
+    document.querySelector('.share-container').innerHTML = `
+          <a href="${uploadedImgUrl}">Photo</a>
+          <button class="btn-facebook" target="_blank" onclick="window.open('https://www.facebook.com/sharer/sharer.php?u=${encodedUploadedImgUrl}&t=${encodedUploadedImgUrl}')">
+             Share on Facebook  
+          </button>`
+  }
+  uploadImg(canvasData, onSuccess)
+}

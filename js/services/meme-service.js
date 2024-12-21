@@ -1,5 +1,5 @@
 'use strict'
-
+let gNewHeight
 let gMeme = {
   selectedImgId: null,
   selectedLineIdx: 0,
@@ -8,12 +8,6 @@ let gMeme = {
 
 function getMeme() {
   return gMeme
-}
-
-function setLineTxt(txt) {
-  const line = gMeme.lines[gMeme.selectedLineIdx]
-  if (!line) return
-  line.txt = txt
 }
 
 function createMeme(selectedImgId) {
@@ -30,6 +24,39 @@ function createMeme(selectedImgId) {
       },
     ],
   }
+}
+
+function addLine(txt = 'Enter your text') {
+  let newXLocation = getRandomIntInclusive(0, 480)
+  let newYLocation = getRandomIntInclusive(0, 480)
+  const newLine = {
+    txt,
+    size: 20,
+    color: 'red',
+    x: newXLocation,
+    y: newYLocation,
+  }
+  gMeme.lines.push(newLine)
+  gMeme.selectedLineIdx = gMeme.lines.length - 1
+}
+
+function setLineTxt(txt) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  if (!line) return
+  line.txt = txt
+}
+
+function setLineFontSize(value) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  if (!line) return
+  let newSize = line.size + value
+  line.size = newSize
+}
+
+function setLineColor(color) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  if (!line) return
+  line.color = color
 }
 
 function findImg(imgId) {
