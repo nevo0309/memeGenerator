@@ -5,6 +5,7 @@ let gCurrentImg = null
 function onInit() {
   makeInvisible()
   renderGallery()
+  document.querySelector('canvas').addEventListener('click', onCanvasClick)
 }
 
 function renderGallery() {

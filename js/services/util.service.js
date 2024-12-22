@@ -1,5 +1,7 @@
 'use strict'
 
+const TOUCH_EVS = ['touchstart', 'touchmove', 'touchend']
+
 function makeId(length = 6) {
   const possible = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'
   var id = ''

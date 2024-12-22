@@ -59,6 +59,28 @@ function setLineColor(color) {
   line.color = color
 }
 
+function selectLine(idx) {
+  const meme = getMeme()
+  meme.selectedLineIdx = idx
+  onRenderMeme()
+}
+function updateTextInput(lineIdx) {
+  const meme = getMeme()
+  const selectedLine = meme.lines[lineIdx]
+  const textInput = document.querySelector('.text-input input')
+  textInput.value = selectedLine.txt // Update the text input to match the selected line
+}
+
+function detectClickedLine(pos, boundingBoxes) {
+  return boundingBoxes.findIndex(
+    (box) =>
+      pos.x >= box.x && // The click is to the right of or on the left  of the box
+      pos.x <= box.x + box.width && // The click is to the left of or on the right  of the box
+      pos.y >= box.y && // The click is below or on the top of the box
+      pos.y <= box.y + box.height // The click is above or on the bottom of the box
+  )
+}
+
 function findImg(imgId) {
   return gImgs.find((img) => img.id === imgId)
 }
