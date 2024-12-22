@@ -14,15 +14,7 @@ function createMeme(selectedImgId) {
   gMeme = {
     selectedImgId,
     selectedLineIdx: 0,
-    lines: [
-      {
-        txt: 'Your Text Here',
-        size: 20,
-        color: 'red',
-        x: 50,
-        y: 50,
-      },
-    ],
+    lines: [],
   }
 }
 
@@ -32,7 +24,7 @@ function addLine(txt = 'Enter your text') {
   const newLine = {
     txt,
     size: 20,
-    color: 'red',
+    color: 'white',
     x: newXLocation,
     y: newYLocation,
   }

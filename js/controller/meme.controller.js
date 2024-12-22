@@ -1,6 +1,7 @@
 'use strict'
 let gElCanvas
 let gCtx
+
 function onRenderMeme(img = gCurrentImg) {
   if (!img) {
     console.error('Image is not loaded.')
@@ -17,18 +18,21 @@ function onRenderMeme(img = gCurrentImg) {
   meme.lines.forEach((line, idx) => {
     // Draw text
     gCtx.font = `${line.size}px Arial`
+    gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
+    gCtx.strokeText(line.txt, line.x, line.y)
     gCtx.fillText(line.txt, line.x, line.y)
 
     // Draw a frame
     const textWidth = gCtx.measureText(line.txt).width
-    const textHeight = line.size // Approximate height of text
+    const textHeight = line.size
     const padding = 5
 
     gCtx.lineWidth = 2
-    gCtx.strokeStyle = idx === meme.selectedLineIdx ? 'black' : 'white' // Highlight selected line
+    gCtx.strokeStyle = idx === meme.selectedLineIdx ? 'black' : 'white'
     gCtx.strokeRect(line.x - padding, line.y - textHeight, textWidth + padding * 2, textHeight + padding * 2)
-    gCtx.fillStyle = 'rgba(0, 0, 0, 0.5)' // Background overlay
+    gCtx.fillStyle = idx === meme.selectedLineIdx ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'
+    // gCtx.fillStyle = 'rgba(0, 0, 0, 0.5)' // Background overlay
     gCtx.fillRect(line.x - padding, line.y - textHeight, textWidth + padding * 2, textHeight + padding * 2)
   })
 }
