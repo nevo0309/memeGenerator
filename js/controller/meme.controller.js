@@ -118,3 +118,8 @@ function onUploadImg(ev) {
   }
   uploadImg(canvasData, onSuccess)
 }
+function onDownloadImg(elLink) {
+  const dataUrl = gElCanvas.toDataURL()
+  elLink.href = dataUrl
+  elLink.download = 'my-meme'
+}
