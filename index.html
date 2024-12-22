@@ -45,9 +45,11 @@
             <button onclick="onChangeFontSize(+1)">A +</button>
             <button onclick="onChangeFontSize(-1)">A -</button>
             <section custom-font>
-              <select>
-                <option value="0">Arial</option>
-                <option value="1">Verdana</option>
+              <select onchange="onChangeFont(this.value)">
+                <option value="Arial" >Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Garamond">Garamond</option>
                 
               </select>
           </div>

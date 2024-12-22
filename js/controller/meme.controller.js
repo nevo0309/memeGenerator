@@ -20,7 +20,7 @@ function onRenderMeme(img = gCurrentImg) {
 
   meme.lines.forEach((line, idx) => {
     // Draw text
-    gCtx.font = `${line.size}px Arial`
+    gCtx.font = `${line.size}px ${line.font}`
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
     gCtx.strokeText(line.txt, line.x, line.y)
@@ -65,6 +65,10 @@ function onSetColor(color) {
 
 function onDeleteLine() {
   deleteLine()
+  onRenderMeme()
+}
+function onChangeFont(font) {
+  changeFont(font)
   onRenderMeme()
 }
 function onAddLine() {

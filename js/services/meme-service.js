@@ -64,6 +64,11 @@ function selectLine(idx) {
   meme.selectedLineIdx = idx
   onRenderMeme()
 }
+
+function changeFont(font) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  line.font = font
+}
 function updateTextInput(lineIdx) {
   const meme = getMeme()
   const selectedLine = meme.lines[lineIdx]
