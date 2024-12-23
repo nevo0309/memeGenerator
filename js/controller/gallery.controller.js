@@ -6,6 +6,7 @@ function onInit() {
   makeInvisible()
   renderGallery()
   document.querySelector('canvas').addEventListener('click', onCanvasClick)
+  window.addEventListener('resize', updateCanvasSize)
 }
 
 function renderGallery() {
@@ -22,12 +23,15 @@ function renderGallery() {
 function makeInvisible() {
   document.querySelector('.main-generator').classList.add('hidden')
   document.querySelector('.main-saved').classList.add('hidden')
+  document.querySelector('.meme-editor').classList.add('hidden')
 }
 
 function onOpenGallery() {
   document.querySelector('.main-generator').classList.add('hidden')
   document.querySelector('.main-saved').classList.add('hidden')
+  document.querySelector('.meme-editor').classList.add('hidden')
   document.querySelector('.main-gallery').classList.remove('hidden')
+  document.querySelector('.filtering').classList.remove('hidden')
 
   renderGallery()
 }
@@ -37,6 +41,7 @@ function onOpenSaved() {} //dont forget
 function onImgSelect(ev, imgId) {
   document.querySelector('.gallery').classList.add('hidden')
   document.querySelector('.meme-editor').classList.remove('hidden')
+  document.querySelector('.filtering').classList.add('hidden')
 
   const currImg = findImg(imgId)
   const img = new Image()

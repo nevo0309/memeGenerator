@@ -19,8 +19,8 @@ function createMeme(selectedImgId) {
 }
 
 function addLine(txt = 'Enter your text') {
-  let newXLocation = getRandomIntInclusive(0, 350)
-  let newYLocation = getRandomIntInclusive(20, 350)
+  let newXLocation = getRandomIntInclusive(0, 650)
+  let newYLocation = getRandomIntInclusive(20, 650)
   const newLine = {
     txt,
     size: 20,

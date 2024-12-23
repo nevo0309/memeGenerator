@@ -1,0 +1,140 @@
+.main-header {
+  background: #333;
+  padding: 1rem;
+  color: white;
+}
+
+.meme-editor {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 2rem;
+  background-color: #333;
+  border-radius: 10px;
+  max-width: 1100px;
+  margin: 0 auto;
+  transition: transform 0.3s ease;
+}
+
+.meme-editor button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.main-canvas {
+  height: auto;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  object-fit: cover;
+}
+
+.editor {
+  width: 35%;
+  display: flex;
+  flex-direction: column;
+  gap: 6rem;
+  padding: 1.5rem;
+  background-color: #4d4d4d;
+  border-radius: 10px;
+  color: white;
+}
+.text-edit {
+  position: relative;
+  padding: 1rem;
+  gap: 1rem;
+  background-color: var(--color-secondary);
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.text-input input {
+  padding: 1rem;
+  font-size: 1.25rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #555;
+  color: white;
+  width: 100%;
+}
+
+.text-edit button {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+
+  color: white;
+  transition: all 0.3s ease;
+  margin: 0.5rem 0;
+}
+
+.font-editor {
+  position: relative;
+  padding: 1rem;
+  background: linear-gradient(to left, var(--color-secondary), var(--color-button));
+  border-radius: 10px;
+  color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+}
+
+.font-editor input,
+.font-editor select {
+  padding: 0.5rem;
+  font-size: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background-color: #555;
+  color: white;
+}
+
+.font-editor select {
+  width: 100%;
+}
+
+.inputs {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+}
+.add-line-btn {
+  background: linear-gradient(to right, green, rgb(73, 167, 73));
+}
+.delete-line-btn {
+  background: linear-gradient(to right, red, rgb(234, 109, 109));
+}
+.switch-line-btn {
+  background: linear-gradient(to right, rgb(63, 63, 230), rgb(111, 84, 222));
+}
+.size-line-btn {
+  background: linear-gradient(to right, var(--color-secondary), var(--color-middle), var(--color-secondary));
+}
+.btn-download {
+  background: linear-gradient(to right, rgb(106, 78, 229), rgb(158, 141, 234));
+}
+.btn-share {
+  background: linear-gradient(to right, rgb(34, 119, 223), rgb(48, 154, 224));
+}
+
+.btn {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: var(--color-button);
+  color: white;
+  transition: all 0.3s ease;
+  text-decoration: none;
+}
+
+.btn:hover {
+  background-color: #ff6666;
+}
+
+.hidden {
+  display: none;
+}

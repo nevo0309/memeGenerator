@@ -1,0 +1,28 @@
+/*MAIN-HEADER*/
+header.main-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(to right, var(--color-secondary), var(--color-middle), var(--color-light));
+  color: white;
+}
+
+header .logo {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+header .main-nav ul {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+header .main-nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
+}

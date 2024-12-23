@@ -10,7 +10,7 @@
     <header class="main-header flex space-between">
       <div class="logo">Meme Generator</div>
       <div class="main-nav flex">
-        <ul class="clean-list flex">
+        <ul class="clean-list flex space-between">
           <li><a onclick="onOpenGallery()">Gallery</a></li>
           <li><a onclick="onOpenRandomMeme()">Randomize</a></li>
           <li><a onclick="onOpenSavedMemes()">Saved</a></li>
@@ -19,6 +19,7 @@
           <select name="" id=""></select>
         </div>
       </div>
+      <button onclick="toggleMenu()" type="button" class="btn-menu">☰</button>
     </header>
 
     <section class="main-gallery">
@@ -32,18 +33,19 @@
         </div>
       </section>
       <section class="meme-editor hidden">
-        <canvas class="main-canvas" width="480" height="480"></canvas>
+        <canvas class="main-canvas" width="700" height="700"></canvas>
         <div class="editor">
           <div class="text-input">
             <input type="text" placeholder="Enter text" oninput="onTextInput(this)" />
           </div>
+          <div class="text-edit">
           <button class="add-line-btn"onclick="onAddLine()">Add Line</button>
           <button class="switch-line-btn" onclick="onSwitchLine()">Switch Line</button>
           <button class="delete-line-btn" onclick="onDeleteLine()">Delete Line</button>
           <div class="font-editor">
             <input type="color"  oninput="onSetColor(this.value)" />
-            <button onclick="onChangeFontSize(+1)">A +</button>
-            <button onclick="onChangeFontSize(-1)">A -</button>
+            <button class="size-line-btn" onclick="onChangeFontSize(+1)">A +</button>
+            <button class="size-line-btn" onclick="onChangeFontSize(-1)">A -</button>
             <section custom-font>
               <select onchange="onChangeFont(this.value)">
                 <option value="Arial" >Arial</option>
@@ -53,13 +55,14 @@
                 
               </select>
           </div>
+        </div>
           <div class="inputs">
             <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
               <input name="img" id="imgData" type="hidden" />
-              <button class="btn" type="submit">Upload</button>
+              <button class="btn btn-share" type="submit">Share</button>
             </form>
             <div class="share-container"></div>
-            <a href="#" class="btn" onclick="onDownloadImg(this)" download="my-meme.jpg">Download</a>
+            <a href="#" class="btn btn-download" onclick="onDownloadImg(this)" download="my-meme.jpg">Download</a>
           </div>
         </div>
       </section>

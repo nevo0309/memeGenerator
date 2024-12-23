@@ -1,4 +1,7 @@
+@import url('vars.css');
+
 /* BASICS */
+
 @import url('basics/base.css');
 @import url('basics/helpers.css');
 @import url('basics/layout.css');
@@ -7,5 +10,7 @@
 @import url('components/main-header.css');
 @import url('components/logo.css');
 @import url('components/main-gallery.css');
+@import url('components/meme-editor.css');
+@import url('components/filtering.css');
 /* MQ */
 @import url('mq.css');

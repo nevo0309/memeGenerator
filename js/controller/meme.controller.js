@@ -19,6 +19,21 @@ function onRenderMeme(img = gCurrentImg) {
   gTextBoundingBoxes = []
 
   meme.lines.forEach((line, idx) => {
+    const textWidth = gCtx.measureText(line.txt).width
+    const textHeight = line.size
+    if (line.x + textWidth > gElCanvas.width) {
+      //if text is out of the canvas to the right
+      line.x = gElCanvas.width - textWidth - 10
+    }
+    if (line.x < 0) {
+      // if the text is out of the canvs to the left
+      line.x = 10
+    }
+
+    if (line.y + textHeight > gElCanvas.height) {
+      line.y = gElCanvas.height - textHeight - 10 //make sure the text is not past the height of the canvas
+    }
+
     // Draw text
     gCtx.font = `${line.size}px ${line.font}`
     gCtx.strokeStyle = 'black'
@@ -26,18 +41,17 @@ function onRenderMeme(img = gCurrentImg) {
     gCtx.strokeText(line.txt, line.x, line.y)
     gCtx.fillText(line.txt, line.x, line.y)
 
-    // Draw a frame
-    const textWidth = gCtx.measureText(line.txt).width
-    const textHeight = line.size
     const padding = 5
 
     gTextBoundingBoxes.push({
+      //location of the box
       x: line.x - padding,
       y: line.y - textHeight,
       width: textWidth + padding * 2,
       height: textHeight + padding * 2,
       idx,
     })
+    // Draw a frame
 
     gCtx.lineWidth = 2
     gCtx.strokeStyle = idx === meme.selectedLineIdx ? 'black' : 'white'
@@ -95,10 +109,12 @@ function onCanvasClick(ev) {
 
   if (clickedLineIdx !== -1) {
     console.log(`Clicked on line index: ${clickedLineIdx}`)
+    console.log('pos', pos)
     selectLine(clickedLineIdx)
     updateTextInput(clickedLineIdx)
   } else {
     console.log('Clicked on empty space')
+    console.log('pos', pos)
   }
 }
 

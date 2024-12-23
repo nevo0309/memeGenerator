@@ -2,6 +2,31 @@
   box-sizing: border-box;
 }
 
-.hidden {
-  display: none;
+body {
+  display: grid;
+  grid-template-columns: 10vw 80vw 10vw;
+  grid-auto-rows: max-content;
+
+  background: var(--color-medium);
+  color: var(--color-dark);
+  font-family: NotoSerif, sans-serif;
+  overflow-y: scroll;
+  gap: 30px;
+}
+body > * {
+  grid-column: 2;
+}
+
+body::-webkit-scrollbar {
+  width: 12px;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: var(--color-primary);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--color-light);
+  border-radius: 10px;
 }

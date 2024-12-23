@@ -1,0 +1,50 @@
+.filtering {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  width: 100%;
+}
+
+.filtering .input-meme-search {
+  flex: 1;
+  max-width: 45%;
+  padding: 0.5rem;
+  margin-right: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 25px;
+  padding-left: 2em;
+  background-color: #2f3337;
+  color: white;
+  font-size: 2rem;
+  outline: none;
+}
+.filtering .input-meme-search::placeholder {
+  padding-left: 0rem;
+}
+.filtering .input-meme-search:focus {
+  padding-left: 2rem;
+}
+
+.filtering .filterby-name-select {
+  display: flex;
+  width: 45%;
+}
+
+.filtering .filterby-name-select button {
+  flex: 1;
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 5px;
+}
+
+.filtering .filterby-name-select button:hover {
+  background-color: var(--color-medium);
+  border-color: var(--color-primary);
+}
