@@ -125,6 +125,16 @@ function onCanvasClick(ev) {
   }
 }
 
+function updateCanvasSize() {
+  if (!gElCanvas || !gCurrentImg) return
+
+  const imgRatio = gCurrentImg.naturalHeight / gCurrentImg.naturalWidth
+  gElCanvas.width = gElCanvas.clientWidth
+  gElCanvas.height = gElCanvas.width * imgRatio
+
+  onRenderMeme()
+}
+
 function onUploadImg(ev) {
   ev.preventDefault()
   const canvasData = gElCanvas.toDataURL('image/jpeg')
