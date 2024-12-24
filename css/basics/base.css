@@ -17,16 +17,6 @@ body > * {
   grid-column: 2;
 }
 
-body::-webkit-scrollbar {
-  width: 12px;
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: var(--color-primary);
-  border-radius: 10px;
-}
-
-body::-webkit-scrollbar-track {
-  background: var(--color-light);
-  border-radius: 10px;
+a:hover {
+  cursor: pointer;
 }

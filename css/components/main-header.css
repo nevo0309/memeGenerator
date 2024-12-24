@@ -13,6 +13,9 @@ header .logo {
   font-size: 2rem;
   font-weight: bold;
 }
+.logo:hover {
+  cursor: pointer;
+}
 
 header .main-nav ul {
   display: flex;

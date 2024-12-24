@@ -8,13 +8,14 @@
   </head>
   <body onload="onInit()">
     <header class="main-header flex space-between">
-      <div class="logo">Meme Generator</div>
+      <div class="logo" onclick="onOpenGallery()">Meme Generator</div>
       <div class="main-nav flex">
         <ul class="clean-list flex space-between">
           <li><a onclick="onOpenGallery()">Gallery</a></li>
           <li><a onclick="onOpenRandomMeme()">Randomize</a></li>
           <li><a onclick="onOpenSavedMemes()">Saved</a></li>
         </ul>
+
         <div class="lang">
           <select name="" id=""></select>
         </div>
@@ -39,36 +40,34 @@
             <input type="text" placeholder="Enter text" oninput="onTextInput(this)" />
           </div>
           <div class="text-edit">
-                  <div class="input-editor-tools">
-          <button class="fa-solid fa-plus"onclick="onAddLine()"></button>
-          <button class="fa-solid fa-arrow-right-arrow-left" onclick="onSwitchLine()"></button>
-          <button class="fa-solid fa-trash-can" onclick="onDeleteLine()"></button>
-                   </div>
-          <div class="line-editor">
-            <select onchange="onChangeFont(this.value)">
-              <option value="Arial" >Arial</option>
-              <option value="Verdana">Verdana</option>
-              <option value="Times New Roman">Times New Roman</option>
-              <option value="Garamond">Garamond</option>
-            </select>
-            <div class="font-editor">
-              <div class="color-picker">
-                <button class="fa-solid fa-brush"></button>
-                <input type="color" oninput="onSetColor(this.value)" />
+            <div class="input-editor-tools">
+              <button class="fa-solid fa-plus" onclick="onAddLine()"></button>
+              <button class="fa-solid fa-arrow-right-arrow-left" onclick="onSwitchLine()"></button>
+              <button class="fa-solid fa-trash-can" onclick="onDeleteLine()"></button>
+            </div>
+            <div class="line-editor">
+              <select onchange="onChangeFont(this.value)">
+                <option value="Arial">Arial</option>
+                <option value="Verdana">Verdana</option>
+                <option value="Times New Roman">Times New Roman</option>
+                <option value="Garamond">Garamond</option>
+              </select>
+              <div class="font-editor">
+                <div class="color-picker">
+                  <button class="fa-solid fa-brush"></button>
+                  <input type="color" oninput="onSetColor(this.value)" />
+                </div>
+
+                <button class="size-line-btn" onclick="onChangeFontSize(+1)">A +</button>
+                <button class="size-line-btn" onclick="onChangeFontSize(-1)">A -</button>
               </div>
-              
-            <button class="size-line-btn" onclick="onChangeFontSize(+1)">A +</button>
-            <button class="size-line-btn" onclick="onChangeFontSize(-1)">A -</button>
+              <div class="text-placement">
+                <button class="fa-solid fa-align-left" onclick="onChangealignment('left')"></button>
+                <button class="fa-solid fa-align-center" onclick="onChangealignment('center')"></button>
+                <button class="fa-solid fa-align-right" onclick="onChangealignment('right')"></button>
+              </div>
+            </div>
           </div>
-            <div class="text-placement">
-            <button class="fa-solid fa-align-left" onclick="onChangealignment('left')"></button>
-            <button class="fa-solid fa-align-center" onclick="onChangealignment('center')"></button>
-            <button class="fa-solid fa-align-right" onclick="onChangealignment('right')"></button>
-          </div>
-            <section custom-font>
-              
-          </div>
-        </div>
           <div class="inputs">
             <form action="" method="POST" enctype="multipart/form-data" onsubmit="onUploadImg(event)">
               <input name="img" id="imgData" type="hidden" />
