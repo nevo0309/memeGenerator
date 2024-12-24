@@ -1,10 +1,6 @@
 'use strict'
 
-let gMeme = {
-  selectedImgId: null,
-  selectedLineIdx: 0,
-  lines: [],
-}
+let gMeme
 
 function getMeme() {
   return gMeme
@@ -68,6 +64,10 @@ function selectLine(idx) {
 function changeFont(font) {
   const line = gMeme.lines[gMeme.selectedLineIdx]
   line.font = font
+}
+function changealignment(direction) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  line.textAlign = direction
 }
 function updateTextInput(lineIdx) {
   const meme = getMeme()

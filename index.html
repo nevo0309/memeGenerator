@@ -39,13 +39,18 @@
             <input type="text" placeholder="Enter text" oninput="onTextInput(this)" />
           </div>
           <div class="text-edit">
-          <button class="add-line-btn"onclick="onAddLine()">Add Line</button>
-          <button class="switch-line-btn" onclick="onSwitchLine()">Switch Line</button>
-          <button class="delete-line-btn" onclick="onDeleteLine()">Delete Line</button>
+                  <div class="input-editor-tools">
+          <button class="fa-solid fa-plus"onclick="onAddLine()"></button>
+          <button class="fa-solid fa-arrow-right-arrow-left" onclick="onSwitchLine()"></button>
+          <button class="fa-solid fa-trash-can" onclick="onDeleteLine()"></button>
+                   </div>
           <div class="font-editor">
-            <input type="color"  oninput="onSetColor(this.value)" />
+            <input  type="color"  oninput="onSetColor(this.value)" />
             <button class="size-line-btn" onclick="onChangeFontSize(+1)">A +</button>
             <button class="size-line-btn" onclick="onChangeFontSize(-1)">A -</button>
+            <button class="fa-solid fa-align-left" onclick="onChangealignment('left')"></button>
+            <button class="fa-solid fa-align-center" onclick="onChangealignment('center')"></button>
+            <button class="fa-solid fa-align-right" onclick="onChangealignment('right')"></button>
             <section custom-font>
               <select onchange="onChangeFont(this.value)">
                 <option value="Arial" >Arial</option>
@@ -70,6 +75,7 @@
     </section>
     <section class="main-saved"></section>
     <section class="main-generator"></section>
+    <script src="https://kit.fontawesome.com/0ee2bb40a5.js" crossorigin="anonymous"></script>
     <script src="./js/services/util.service.js"></script>
     <script src="./js/upload.service.js"></script>
     <script src="./js/services/gallery.service.js"></script>

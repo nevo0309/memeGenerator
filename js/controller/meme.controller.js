@@ -19,49 +19,43 @@ function onRenderMeme(img = gCurrentImg) {
   gTextBoundingBoxes = []
 
   meme.lines.forEach((line, idx) => {
+    gCtx.textAlign = line.textAlign || 'left'
+    gCtx.font = `${line.size}px ${line.font}`
     const textWidth = gCtx.measureText(line.txt).width
     const textHeight = line.size
-    if (line.x + textWidth > gElCanvas.width) {
-      //if text is out of the canvas to the right
-      line.x = gElCanvas.width - textWidth - 10
-    }
-    if (line.x < 0) {
-      // if the text is out of the canvs to the left
-      line.x = 10
-    }
 
-    if (line.y + textHeight > gElCanvas.height) {
-      line.y = gElCanvas.height - textHeight - 10 //make sure the text is not past the height of the canvas
+    let adjustedX = line.x
+    if (line.textAlign === 'center') {
+      adjustedX -= textWidth / 2
+    } else if (line.textAlign === 'right') {
+      adjustedX -= textWidth
     }
 
     // Draw text
-    gCtx.font = `${line.size}px ${line.font}`
     gCtx.strokeStyle = 'black'
     gCtx.fillStyle = line.color
     gCtx.strokeText(line.txt, line.x, line.y)
     gCtx.fillText(line.txt, line.x, line.y)
 
+    // Update bounding box
     const padding = 5
-
-    gTextBoundingBoxes.push({
-      //location of the box
-      x: line.x - padding,
+    const boundingBox = {
+      x: adjustedX - padding,
       y: line.y - textHeight,
       width: textWidth + padding * 2,
       height: textHeight + padding * 2,
       idx,
-    })
-    // Draw a frame
+    }
+    gTextBoundingBoxes[idx] = boundingBox
 
+    // Draw bounding box
     gCtx.lineWidth = 2
     gCtx.strokeStyle = idx === meme.selectedLineIdx ? 'black' : 'white'
-    gCtx.strokeRect(line.x - padding, line.y - textHeight, textWidth + padding * 2, textHeight + padding * 2)
+    gCtx.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
     gCtx.fillStyle = idx === meme.selectedLineIdx ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'
-    // gCtx.fillStyle = 'rgba(0, 0, 0, 0.5)' // Background overlay
-    gCtx.fillRect(line.x - padding, line.y - textHeight, textWidth + padding * 2, textHeight + padding * 2)
+    gCtx.fillRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
   })
 }
-
 function onTextInput(input) {
   setLineTxt(input.value)
   onRenderMeme()
@@ -83,6 +77,10 @@ function onDeleteLine() {
 }
 function onChangeFont(font) {
   changeFont(font)
+  onRenderMeme()
+}
+function onChangealignment(value) {
+  changealignment(value)
   onRenderMeme()
 }
 function onAddLine() {
