@@ -31,6 +31,7 @@ function onOpenGallery() {
   document.querySelector('.main-saved').classList.add('hidden')
   document.querySelector('.meme-editor').classList.add('hidden')
   document.querySelector('.main-gallery').classList.remove('hidden')
+  document.querySelector('.gallery').classList.remove('hidden')
   document.querySelector('.filtering').classList.remove('hidden')
 
   renderGallery()
