@@ -9,53 +9,62 @@ function onRenderMeme(img = gCurrentImg) {
     return
   }
 
-  gElCanvas = document.querySelector('canvas')
-  gCtx = gElCanvas.getContext('2d')
-
-  gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
-  gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+  initializeCanvas(img)
 
   const meme = getMeme()
   gTextBoundingBoxes = []
 
   meme.lines.forEach((line, idx) => {
-    gCtx.textAlign = line.textAlign || 'left'
-    gCtx.font = `${line.size}px ${line.font}`
-    const textWidth = gCtx.measureText(line.txt).width
-    const textHeight = line.size
-
-    let adjustedX = line.x
-    if (line.textAlign === 'center') {
-      adjustedX -= textWidth / 2
-    } else if (line.textAlign === 'right') {
-      adjustedX -= textWidth
-    }
-
-    // Draw text
-    gCtx.strokeStyle = 'black'
-    gCtx.fillStyle = line.color
-    gCtx.strokeText(line.txt, line.x, line.y)
-    gCtx.fillText(line.txt, line.x, line.y)
-
-    // Update bounding box
-    const padding = 5
-    const boundingBox = {
-      x: adjustedX - padding,
-      y: line.y - textHeight,
-      width: textWidth + padding * 2,
-      height: textHeight + padding * 2,
-      idx,
-    }
+    renderText(line)
+    const boundingBox = calculateBoundingBox(line, idx)
     gTextBoundingBoxes[idx] = boundingBox
-
-    // Draw bounding box
-    gCtx.lineWidth = 2
-    gCtx.strokeStyle = idx === meme.selectedLineIdx ? 'black' : 'white'
-    gCtx.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
-    gCtx.fillStyle = idx === meme.selectedLineIdx ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'
-    gCtx.fillRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
+    drawBoundingBox(boundingBox, idx === meme.selectedLineIdx)
   })
 }
+function initializeCanvas(img) {
+  gElCanvas = document.querySelector('canvas')
+  gCtx = gElCanvas.getContext('2d')
+
+  gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+  gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
+}
+function renderText(line) {
+  gCtx.textAlign = line.textAlign || 'left'
+  gCtx.font = `${line.size}px ${line.font}`
+  gCtx.strokeStyle = 'black'
+  gCtx.fillStyle = line.color
+  gCtx.strokeText(line.txt, line.x, line.y)
+  gCtx.fillText(line.txt, line.x, line.y)
+}
+function calculateBoundingBox(line, idx) {
+  const padding = 5
+  const textWidth = gCtx.measureText(line.txt).width
+  const textHeight = line.size
+
+  let adjustedX = line.x
+  if (line.textAlign === 'center') {
+    adjustedX -= textWidth / 2
+  } else if (line.textAlign === 'right') {
+    adjustedX -= textWidth
+  }
+
+  return {
+    x: adjustedX - padding,
+    y: line.y - textHeight,
+    width: textWidth + padding * 2,
+    height: textHeight + padding * 2,
+    idx,
+  }
+}
+function drawBoundingBox(boundingBox, isSelected) {
+  gCtx.lineWidth = 2
+  gCtx.strokeStyle = isSelected ? 'black' : 'white'
+  gCtx.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
+
+  gCtx.fillStyle = isSelected ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'
+  gCtx.fillRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
+}
+
 function onTextInput(input) {
   setLineTxt(input.value)
   onRenderMeme()
