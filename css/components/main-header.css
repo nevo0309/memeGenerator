@@ -5,6 +5,7 @@ header.main-header {
   align-items: center;
   padding: 1rem 2rem;
   background: linear-gradient(to right, var(--color-secondary), var(--color-middle), var(--color-light));
+  border-radius: 10px;
   color: white;
 }
 
