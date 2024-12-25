@@ -40,9 +40,12 @@
   }
 
   .font-editor {
-    flex-direction: column;
+    flex-direction: row;
   }
-
+  .text-placement {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
   .inputs {
     flex-direction: column;
   }
