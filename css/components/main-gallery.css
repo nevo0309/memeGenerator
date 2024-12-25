@@ -41,3 +41,6 @@
   background: var(--color-light);
   border-radius: 10px;
 }
+.btn-menu {
+  display: none;
+}

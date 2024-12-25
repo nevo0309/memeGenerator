@@ -7,6 +7,7 @@
 @import url('basics/layout.css');
 
 /* COMPONENTS */
+@import url('components/burger-menu.css');
 @import url('components/main-header.css');
 @import url('components/logo.css');
 @import url('components/main-gallery.css');

@@ -55,3 +55,25 @@ function onImgSelect(ev, imgId) {
 
   console.log('img', currImg)
 }
+
+function toggleMenu() {
+  const nav = document.querySelector('.main-nav')
+  const overlay = document.querySelector('.screen-overlay')
+
+  const isOpen = nav.classList.contains('menu-open')
+  if (isOpen) {
+    nav.classList.remove('menu-open')
+    overlay.classList.remove('active')
+  } else {
+    nav.classList.add('menu-open')
+    overlay.classList.add('active')
+  }
+}
+
+function closeMenu() {
+  const nav = document.querySelector('.main-nav')
+  const overlay = document.querySelector('.screen-overlay')
+
+  nav.classList.remove('menu-open')
+  overlay.classList.remove('active')
+}
