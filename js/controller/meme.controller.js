@@ -92,6 +92,10 @@ function onChangealignment(value) {
   changealignment(value)
   onRenderMeme()
 }
+function onChangePlace(value) {
+  changePlace(value)
+  onRenderMeme()
+}
 function onAddLine() {
   addLine()
 

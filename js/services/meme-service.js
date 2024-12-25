@@ -69,6 +69,10 @@ function changealignment(direction) {
   const line = gMeme.lines[gMeme.selectedLineIdx]
   line.textAlign = direction
 }
+function changePlace(value) {
+  const line = gMeme.lines[gMeme.selectedLineIdx]
+  line.y += value
+}
 function updateTextInput(lineIdx) {
   const meme = getMeme()
   const selectedLine = meme.lines[lineIdx]

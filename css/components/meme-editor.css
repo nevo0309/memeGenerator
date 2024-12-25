@@ -50,6 +50,8 @@
 }
 
 .text-input input {
+  margin-top: 4rem;
+  margin-bottom: 0;
   padding: 1rem;
   font-size: 1.25rem;
   border-radius: 8px;
@@ -61,6 +63,7 @@
 
 .text-edit button {
   padding: 0.5rem 1rem;
+
   font-size: 1rem;
   border: none;
   border-radius: 8px;
@@ -86,7 +89,10 @@
   display: flex;
   text-align: center;
   justify-content: center;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+.text-placement {
+  flex-wrap: wrap;
 }
 
 .line-editor input,
@@ -109,6 +115,11 @@
   gap: 1rem;
   margin-top: auto;
 }
+.fa-plus,
+.fa-trash-can,
+.fa-arrow-right-arrow-left {
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 1);
+}
 .fa-plus {
   background: linear-gradient(to right, green, rgb(73, 167, 73));
 }
@@ -129,7 +140,9 @@
 }
 .fa-align-left,
 .fa-align-right,
-.fa-align-center {
+.fa-align-center,
+.fa-arrow-up,
+.fa-arrow-down {
   background: linear-gradient(to right, var(--color-secondary), var(--color-middle), var(--color-secondary));
 }
 
