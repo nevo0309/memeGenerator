@@ -30,6 +30,7 @@ function onOpenGallery() {
   document.querySelector('.main-generator').classList.add('hidden')
   document.querySelector('.main-saved').classList.add('hidden')
   document.querySelector('.meme-editor').classList.add('hidden')
+
   document.querySelector('.main-gallery').classList.remove('hidden')
   document.querySelector('.gallery').classList.remove('hidden')
   document.querySelector('.filtering').classList.remove('hidden')
@@ -64,6 +65,15 @@ function onRandomMeme() {
   let randText = gText[randTextIdx]
 
   onImgSelect(0, randImgId)
+
+  setTimeout(() => {
+    onRandomText()
+  }, 100)
+}
+
+function onRandomText() {
+  let randTextIdx = getRandomIntInclusive(0, gText.length - 1)
+  let randText = gText[randTextIdx]
 
   setTimeout(() => {
     addLine(randText)

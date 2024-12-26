@@ -27,6 +27,32 @@
   transform: scale(1.05);
   cursor: pointer;
 }
+.create-random {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 25px;
+}
+.random-meme {
+  height: 5rem;
+  width: 10rem;
+
+  border: 1px solid black;
+  font-size: 1.4rem;
+  color: white;
+  background: linear-gradient(to right, var(--color-secondary), var(--color-light));
+  border-radius: 15px;
+}
+.random-meme:hover {
+  cursor: pointer;
+  box-shadow: 0 5px 10px 5px rgba(0, 0, 0, 0.4);
+}
+
+.random-meme:active {
+  transform: scale(0.9);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+}
 
 .main-gallery::-webkit-scrollbar {
   width: 8px;

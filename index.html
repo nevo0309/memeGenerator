@@ -12,7 +12,6 @@
       <div class="main-nav flex">
         <ul class="clean-list flex space-between">
           <li><a onclick="onOpenGallery()">Gallery</a></li>
-          <li><a onclick="onOpenRandomMeme()">Randomize</a></li>
           <li><a onclick="onOpenSavedMemes()">Saved</a></li>
         </ul>
 
@@ -35,13 +34,14 @@
         </div>
       </section>
       <div class="create-random">
-        <button class="random-meme" onclick="onRandomMeme()">I'm felxible</button>
+        <button class="random-meme" onclick="onRandomMeme()">Randomize</button>
       </div>
       <section class="meme-editor hidden">
         <canvas class="main-canvas" width="700" height="700"></canvas>
         <div class="editor">
           <div class="text-input">
             <input type="text" placeholder="Enter text" oninput="onTextInput(this)" />
+            <button class="random-text" onclick="onRandomText()">Random Text</button>
           </div>
           <div class="text-edit">
             <div class="input-editor-tools">

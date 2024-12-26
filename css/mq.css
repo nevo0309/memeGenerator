@@ -147,6 +147,18 @@
     opacity: 1;
     visibility: visible;
   }
+  .random-meme {
+    height: 2.5rem;
+    width: 5rem;
+
+    font-size: 0.7rem;
+  }
+  .editor {
+    gap: 20px;
+  }
+  .text-input input {
+    margin-top: 0.5rem;
+  }
 }
 
 @media (max-width: 480px) {
