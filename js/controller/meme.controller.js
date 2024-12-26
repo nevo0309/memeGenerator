@@ -29,6 +29,7 @@ function initializeCanvas(img) {
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 function renderText(line) {
+  const textWidth = gCtx.measureText(line.txt).width
   gCtx.textAlign = line.textAlign || 'left'
   gCtx.font = `${line.size}px ${line.font}`
   gCtx.strokeStyle = 'black'

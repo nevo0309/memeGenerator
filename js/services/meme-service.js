@@ -1,7 +1,6 @@
 'use strict'
 
 let gMeme
-
 function getMeme() {
   return gMeme
 }
@@ -15,8 +14,10 @@ function createMeme(selectedImgId) {
 }
 
 function addLine(txt = 'Enter your text') {
-  let newXLocation = getRandomIntInclusive(0, 650)
-  let newYLocation = getRandomIntInclusive(20, 650)
+  const canvasWidth = gElCanvas.width
+  const canvasHeight = gElCanvas.height
+  let newXLocation = getRandomIntInclusive(0, canvasWidth - 400)
+  let newYLocation = getRandomIntInclusive(20, canvasHeight - 20)
   const newLine = {
     txt,
     size: 20,

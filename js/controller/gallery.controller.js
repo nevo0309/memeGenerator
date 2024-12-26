@@ -43,7 +43,8 @@ function onImgSelect(ev, imgId) {
   document.querySelector('.gallery').classList.add('hidden')
   document.querySelector('.meme-editor').classList.remove('hidden')
   document.querySelector('.filtering').classList.add('hidden')
-
+  document.querySelector('.text-input input').value = ''
+  console.log('imgId', imgId)
   const currImg = findImg(imgId)
   const img = new Image()
   img.src = currImg.imgUrl
@@ -55,7 +56,25 @@ function onImgSelect(ev, imgId) {
 
   console.log('img', currImg)
 }
+function onRandomMeme() {
+  let randIdx = getRandomIntInclusive(0, gImgs.length)
+  let randImgId = gImgs[randIdx].id
 
+  let randTextIdx = getRandomIntInclusive(0, gText.length - 1)
+  let randText = gText[randTextIdx]
+
+  onImgSelect(0, randImgId)
+
+  setTimeout(() => {
+    addLine(randText)
+    const textInput = document.querySelector('.text-input input')
+    const meme = getMeme()
+    const selectedLine = meme.lines[meme.selectedLineIdx]
+    textInput.value = selectedLine.txt
+
+    onRenderMeme()
+  }, 100)
+}
 function toggleMenu() {
   const nav = document.querySelector('.main-nav')
   const overlay = document.querySelector('.screen-overlay')

@@ -1,6 +1,8 @@
 'use strict'
 
 let gImgs = []
+let gText = ["When you're late, but the coffee's worth it.", "I can't adult today. Please don't make me.", "That moment when you realize... it's Monday.", "Me: I'll just have one slice. Also me: *eats the whole pizza*", 'Why fall in love when you can fall asleep instead?', "My brain at 3 AM: Let's overthink everything."]
+
 _createImgs()
 
 function _createImgs() {
