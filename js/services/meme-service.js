@@ -13,21 +13,26 @@ function createMeme(selectedImgId) {
   }
 }
 
-function addLine(txt = 'Enter your text') {
+function addLine(txt = 'Enter your text', isSticker = false) {
   const canvasWidth = gElCanvas.width
   const canvasHeight = gElCanvas.height
+
   let newXLocation = getRandomIntInclusive(0, canvasWidth - 400)
   let newYLocation = getRandomIntInclusive(20, canvasHeight - 20)
+
   const newLine = {
     txt,
-    size: 20,
-    color: 'white',
+    size: isSticker ? 40 : 20,
+    color: isSticker ? 'transparent' : 'white',
     x: newXLocation,
     y: newYLocation,
+    isSticker,
   }
+
   gMeme.lines.push(newLine)
   gMeme.selectedLineIdx = gMeme.lines.length - 1
 }
+
 function deleteLine() {
   const meme = getMeme()
   const lineIdx = meme.selectedLineIdx
@@ -109,5 +114,23 @@ function calculateBoundingBox(line, idx) {
     width: textWidth + padding * 2,
     height: textHeight + padding * 2,
     idx,
+  }
+}
+
+function scrollCarousel(direction) {
+  const carousel = document.querySelector('.carousel-items')
+  const itemWidth = document.querySelector('.carousel-item').offsetWidth + 20
+  const currentTransform = getComputedStyle(carousel).transform
+
+  let currentX = 0
+  if (currentTransform !== 'none') {
+    currentX = parseFloat(currentTransform.split(',')[4])
+  }
+
+  const newX = currentX + direction * itemWidth
+  const maxScroll = -(carousel.scrollWidth - carousel.parentElement.offsetWidth)
+
+  if (newX <= 0 && newX >= maxScroll) {
+    carousel.style.transform = `translateX(${newX}px)`
   }
 }

@@ -159,6 +159,17 @@
   .text-input input {
     margin-top: 0.5rem;
   }
+  .carousel {
+    width: 60%;
+  }
+  .carousel-item {
+    min-width: 5px;
+    height: 5px;
+  }
+  .carousel-btn {
+    width: 20px;
+    margin: 3px 3px;
+  }
 }
 
 @media (max-width: 480px) {

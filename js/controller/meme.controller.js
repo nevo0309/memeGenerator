@@ -67,6 +67,9 @@ function onTextInput(input) {
   setLineTxt(input.value)
   onRenderMeme()
 }
+function onAddSticker(emoji) {
+  onAddLine(emoji, true)
+}
 
 function onChangeFontSize(value) {
   setLineFontSize(value)
@@ -94,16 +97,20 @@ function onChangePlace(value) {
   changePlace(value)
   onRenderMeme()
 }
-function onAddLine() {
-  addLine()
+function onAddLine(txt = 'Enter your text', isSticker = false) {
+  addLine(txt, isSticker)
 
   const meme = getMeme()
   const selectedLine = meme.lines[meme.selectedLineIdx]
-  const textInput = document.querySelector('.text-input input')
-  textInput.value = selectedLine.txt
+
+  if (!isSticker) {
+    const textInput = document.querySelector('.text-input input')
+    textInput.value = selectedLine.txt
+  }
 
   onRenderMeme()
 }
+
 function onSwitchLine() {
   const meme = getMeme()
   meme.selectedLineIdx = (meme.selectedLineIdx + 1) % meme.lines.length
