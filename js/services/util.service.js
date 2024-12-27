@@ -19,26 +19,26 @@ function getRandomIntInclusive(min, max) {
 }
 
 function getEvPos(ev) {
-  let pos = {
-    x: ev.offsetX,
-    y: ev.offsetY,
-  }
+  let pos
 
   if (TOUCH_EVS.includes(ev.type)) {
     ev.preventDefault()
 
-    ev = ev.changedTouches[0]
+    // Touch event use bounding client rect for precise positioning
+    const touch = ev.changedTouches[0]
+    const rect = gElCanvas.getBoundingClientRect() // canvas size and position
 
     pos = {
-      x: ev.pageX - ev.target.offsetLeft - ev.target.clientLeft,
-      y: ev.pageY - ev.target.offsetTop - ev.target.clientTop,
+      x: (touch.pageX - rect.left) * (gElCanvas.width / rect.width),
+      y: (touch.pageY - rect.top) * (gElCanvas.height / rect.height),
+    }
+  } else {
+    // Mouse event use offset coordinates
+    pos = {
+      x: ev.offsetX * (gElCanvas.width / gElCanvas.clientWidth),
+      y: ev.offsetY * (gElCanvas.height / gElCanvas.clientHeight),
     }
   }
-  const scaleX = gElCanvas.width / gElCanvas.clientWidth
-  const scaleY = gElCanvas.height / gElCanvas.clientHeight
-
-  pos.x *= scaleX
-  pos.y *= scaleY
 
   return pos
 }

@@ -2,6 +2,8 @@
 let gElCanvas
 let gCtx
 let gTextBoundingBoxes = []
+let isDragging = false
+let dragOffset = { x: 0, y: 0 }
 
 function onRenderMeme(img = gCurrentImg) {
   if (!img) {
@@ -21,6 +23,18 @@ function onRenderMeme(img = gCurrentImg) {
     drawBoundingBox(boundingBox, idx === meme.selectedLineIdx)
   })
 }
+
+function addMouseListeners() {
+  gElCanvas.addEventListener('mousedown', onDown)
+  gElCanvas.addEventListener('mousemove', onMove)
+  gElCanvas.addEventListener('mouseup', onUp)
+}
+
+function addTouchListeners() {
+  gElCanvas.addEventListener('touchstart', onDown)
+  gElCanvas.addEventListener('touchmove', onMove)
+  gElCanvas.addEventListener('touchend', onUp)
+}
 function initializeCanvas(img) {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
@@ -37,33 +51,16 @@ function renderText(line) {
   gCtx.strokeText(line.txt, line.x, line.y)
   gCtx.fillText(line.txt, line.x, line.y)
 }
-function calculateBoundingBox(line, idx) {
-  const padding = 5
-  const textWidth = gCtx.measureText(line.txt).width
-  const textHeight = line.size
 
-  let adjustedX = line.x
-  if (line.textAlign === 'center') {
-    adjustedX -= textWidth / 2
-  } else if (line.textAlign === 'right') {
-    adjustedX -= textWidth
-  }
-
-  return {
-    x: adjustedX - padding,
-    y: line.y - textHeight,
-    width: textWidth + padding * 2,
-    height: textHeight + padding * 2,
-    idx,
-  }
-}
 function drawBoundingBox(boundingBox, isSelected) {
-  gCtx.lineWidth = 2
-  gCtx.strokeStyle = isSelected ? 'black' : 'white'
-  gCtx.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
+  if (isSelected) {
+    gCtx.lineWidth = 2
+    gCtx.strokeStyle = 'black'
+    gCtx.strokeRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
 
-  gCtx.fillStyle = isSelected ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'
-  gCtx.fillRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
+    gCtx.fillStyle = isSelected ? 'rgba(0, 0, 0, 0.2)' : 'rgba(0, 0, 0, 0)'
+    gCtx.fillRect(boundingBox.x, boundingBox.y, boundingBox.width, boundingBox.height)
+  }
 }
 
 function onTextInput(input) {
@@ -160,4 +157,35 @@ function onDownloadImg(elLink) {
   const dataUrl = gElCanvas.toDataURL()
   elLink.href = dataUrl
   elLink.download = 'my-meme'
+}
+
+function onDown(ev) {
+  ev.preventDefault()
+  const pos = getEvPos(ev)
+  const clickedLineIdx = detectClickedLine(pos, gTextBoundingBoxes)
+
+  if (clickedLineIdx !== -1) {
+    isDragging = true
+    selectLine(clickedLineIdx)
+    const selectedLine = gMeme.lines[clickedLineIdx]
+    dragOffset = { x: pos.x - selectedLine.x, y: pos.y - selectedLine.y }
+    updateTextInput(clickedLineIdx)
+  }
+}
+
+function onMove(ev) {
+  if (!isDragging) return
+  ev.preventDefault()
+
+  const pos = getEvPos(ev)
+  const selectedLine = gMeme.lines[gMeme.selectedLineIdx]
+
+  selectedLine.x = pos.x - dragOffset.x
+  selectedLine.y = pos.y - dragOffset.y
+
+  onRenderMeme()
+}
+
+function onUp(ev) {
+  isDragging = false
 }

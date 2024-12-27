@@ -5,6 +5,7 @@ let gCurrentImg = null
 function onInit() {
   makeInvisible()
   renderGallery()
+
   document.querySelector('canvas').addEventListener('click', onCanvasClick)
   window.addEventListener('resize', updateCanvasSize)
 }
@@ -45,12 +46,17 @@ function onImgSelect(ev, imgId) {
   document.querySelector('.meme-editor').classList.remove('hidden')
   document.querySelector('.filtering').classList.add('hidden')
   document.querySelector('.text-input input').value = ''
+
   console.log('imgId', imgId)
   const currImg = findImg(imgId)
   const img = new Image()
   img.src = currImg.imgUrl
   img.onload = () => {
     gCurrentImg = img
+    gElCanvas = document.querySelector('canvas')
+    gCtx = gElCanvas.getContext('2d')
+    addMouseListeners()
+    addTouchListeners()
     createMeme(imgId)
     onRenderMeme(img)
   }

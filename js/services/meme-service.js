@@ -94,3 +94,24 @@ function detectClickedLine(pos, boundingBoxes) {
 function findImg(imgId) {
   return gImgs.find((img) => img.id === imgId)
 }
+
+function calculateBoundingBox(line, idx) {
+  const padding = 5
+  const textWidth = gCtx.measureText(line.txt).width
+  const textHeight = line.size
+
+  let adjustedX = line.x
+  if (line.textAlign === 'center') {
+    adjustedX -= textWidth / 2
+  } else if (line.textAlign === 'right') {
+    adjustedX -= textWidth
+  }
+
+  return {
+    x: adjustedX - padding,
+    y: line.y - textHeight - padding,
+    width: textWidth + padding * 2,
+    height: textHeight + padding * 2,
+    idx,
+  }
+}
