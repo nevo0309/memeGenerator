@@ -39,7 +39,6 @@ function onOpenGallery() {
   renderGallery()
 }
 function onOpenGenerator() {} //dont forget
-function onOpenSaved() {} //dont forget
 
 function onImgSelect(ev, imgId) {
   document.querySelector('.gallery').classList.add('hidden')

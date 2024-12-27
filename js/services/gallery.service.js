@@ -32,3 +32,10 @@ function _createImg(imgUrl, keywords) {
     keywords,
   }
 }
+function findImg(imgId) {
+  return gImgs.find((img) => img.id === imgId)
+}
+
+function getImgs() {
+  return gImgs
+}

@@ -1,0 +1,42 @@
+.main-saved {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Adjust column size as needed */
+  gap: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  justify-items: center;
+}
+
+.saved-meme {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.saved-meme img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.saved-meme img:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.saved-meme button {
+  margin-top: 8px;
+  padding: 10px 20px;
+  background-color: var(--color-primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.saved-meme button:hover {
+  background-color: var(--color-secondary);
+}
