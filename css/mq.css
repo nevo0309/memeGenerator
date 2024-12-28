@@ -58,7 +58,15 @@
 /* Gallery Mobile Layout */
 @media (max-width: 768px) {
   .main-gallery .gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr); /* Two columns */
+    gap: 8px; /* Adjust gap between images */
+  }
+
+  .main-gallery img {
+    width: 100%; /* Ensure images scale down properly */
+    height: auto; /* Maintain aspect ratio */
+    border-radius: 8px;
+    padding: 4px; /* Smaller padding for compact design */
   }
 
   .filtering {
