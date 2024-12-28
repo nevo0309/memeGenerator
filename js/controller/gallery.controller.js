@@ -13,12 +13,19 @@ function onInit() {
 function renderGallery() {
   const imgs = gImgs
   const elGallery = document.querySelector('.gallery')
+  const uploadButtonHtml = `
+    <label class="upload-photo">
+      <input type="file" accept="image/*" onchange="onPhotoUpload(event)" hidden />
+      <img src="imgs/upload.png" alt="Upload Photo" />
+    </label>
+  `
+
   const strHtmls = imgs.map(
     (img) => `
-        <img onclick="onImgSelect(event, '${img.id}')" src="${img.imgUrl}" alt="${img.keywords}">
-      `
+      <img onclick="onImgSelect(event, '${img.id}')" src="${img.imgUrl}" alt="${img.keywords}">
+    `
   )
-  elGallery.innerHTML = strHtmls.join('')
+  elGallery.innerHTML = uploadButtonHtml + strHtmls.join('')
 }
 
 function makeInvisible() {
@@ -110,4 +117,28 @@ function closeMenu() {
 
   nav.classList.remove('menu-open')
   overlay.classList.remove('active')
+}
+
+function onPhotoUpload(event) {
+  const file = event.target.files[0]
+  if (!file) return
+
+  const reader = new FileReader()
+  reader.onload = (e) => {
+    const img = new Image()
+    img.src = e.target.result
+    img.onload = () => {
+      gCurrentImg = img
+      document.querySelector('.gallery').classList.add('hidden')
+      document.querySelector('.meme-editor').classList.remove('hidden')
+
+      gElCanvas = document.querySelector('canvas')
+      gCtx = gElCanvas.getContext('2d')
+
+      initializeCanvas(img)
+      createMeme(null)
+      onRenderMeme()
+    }
+  }
+  reader.readAsDataURL(file)
 }

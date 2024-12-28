@@ -144,9 +144,11 @@ function onCanvasClick(ev) {
 function updateCanvasSize() {
   if (!gElCanvas || !gCurrentImg) return
 
-  const imgRatio = gCurrentImg.naturalHeight / gCurrentImg.naturalWidth
-  gElCanvas.width = gElCanvas.clientWidth
-  gElCanvas.height = gElCanvas.width * imgRatio
+  const container = gElCanvas.parentElement
+  const containerWidth = container.clientWidth
+
+  gElCanvas.width = containerWidth
+  gElCanvas.height = containerWidth * (gCurrentImg.naturalHeight / gCurrentImg.naturalWidth)
 
   onRenderMeme()
 }
