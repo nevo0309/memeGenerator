@@ -39,7 +39,14 @@ function initializeCanvas(img) {
   gElCanvas = document.querySelector('canvas')
   gCtx = gElCanvas.getContext('2d')
 
-  gElCanvas.height = (img.naturalHeight / img.naturalWidth) * gElCanvas.width
+  const container = gElCanvas.parentElement
+  const containerWidth = container.clientWidth
+
+  gElCanvas.width = containerWidth
+
+  const aspectRatio = img.naturalHeight / img.naturalWidth
+  gElCanvas.height = containerWidth * aspectRatio
+
   gCtx.drawImage(img, 0, 0, gElCanvas.width, gElCanvas.height)
 }
 function renderText(line) {
