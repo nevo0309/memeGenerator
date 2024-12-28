@@ -142,3 +142,23 @@ function onPhotoUpload(event) {
   }
   reader.readAsDataURL(file)
 }
+
+function onFilterMeme(keyword) {
+  onKeyWordFilter(keyword)
+}
+
+function onKeyWordFilter(keyword) {
+  const filteredImgs = gImgs.filter((img) => img.keywords.includes(keyword))
+  renderFilteredGallery(filteredImgs)
+}
+
+function renderFilteredGallery(filteredImgs) {
+  const elGallery = document.querySelector('.gallery')
+
+  const strHtmls = filteredImgs.map(
+    (img) => `
+      <img onclick="onImgSelect(event, '${img.id}')" src="${img.imgUrl}" alt="${img.keywords}">
+    `
+  )
+  elGallery.innerHTML = strHtmls.join('')
+}

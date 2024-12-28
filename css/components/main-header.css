@@ -19,14 +19,17 @@ header .logo {
 
 header .main-nav ul {
   display: flex;
-  gap: 1.5rem;
   list-style: none;
   padding: 0;
   margin: 0;
+  gap: 5em;
 }
 
 header .main-nav a {
   color: white;
   text-decoration: none;
   font-size: 1rem;
+}
+header .lang {
+  margin-left: 2rem;
 }

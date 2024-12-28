@@ -10,13 +10,16 @@
     <header class="main-header flex space-between">
       <div class="logo" onclick="onOpenGallery()">Meme Generator</div>
       <div class="main-nav flex">
-        <ul class="clean-list flex space-between">
+        <ul class="clean-list flex">
           <li><a onclick="onOpenGallery()">Gallery</a></li>
           <li><a onclick="onOpenSavedMemes()">Saved</a></li>
         </ul>
 
         <div class="lang">
-          <select name="" id=""></select>
+          <select name="" id="">
+            <option value="hebrew">He</option>
+            <option value="english">EN</option>
+          </select>
         </div>
       </div>
       <button onclick="toggleMenu()" type="button" class="btn-menu">☰</button>
@@ -25,12 +28,13 @@
 
     <section class="main-gallery">
       <section class="filtering flex space-between">
-        <input oninput="onFilterMeme()" type="text" class="input-meme-search" placeholder="Meme search" />
+        <input oninput="onFilterMeme(this.value)" type="text" class="input-meme-search" placeholder="Meme search" />
         <div class="filterby-name-select">
           <button class="keyword1" value="happy" onclick="onKeyWordFilter(this.value)">Happy</button>
           <button class="keyword2" value="funny" onclick="onKeyWordFilter(this.value)">Funny</button>
           <button class="keyword3" value="sad" onclick="onKeyWordFilter(this.value)">Sad</button>
           <button class="keyword4" value="crazy" onclick="onKeyWordFilter(this.value)">Crazy</button>
+          <button class="keyword4" value="kids" onclick="onKeyWordFilter(this.value)">Kids</button>
         </div>
       </section>
       <div class="create-random">
