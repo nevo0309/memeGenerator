@@ -7,17 +7,17 @@ _createImgs()
 
 function _createImgs() {
   gImgs = [
-    _createImg('imgs/1.jpg', ['funny', 'person']),
+    _createImg('imgs/1.jpg', ['funny', 'person', 'sad']),
     _createImg('imgs/2.jpg', ['cute', 'pets']),
     _createImg('imgs/3.jpg', ['cute', 'chill']),
     _createImg('imgs/4.jpg', ['cute', 'pets']),
-    _createImg('imgs/5.jpg', ['funny', 'kid']),
+    _createImg('imgs/5.jpg', ['funny', 'sad']),
     _createImg('imgs/6.jpg', ['funny', 'sarcstic']),
     _createImg('imgs/7.jpg', ['funny', 'kids']),
     _createImg('imgs/8.jpg', ['funny']),
     _createImg('imgs/9.jpg', ['funny', 'kids']),
     _createImg('imgs/10.jpg', ['funny', 'person']),
-    _createImg('imgs/11.jpg', ['bros before hoes']),
+    _createImg('imgs/11.jpg', ['funny', 'person']),
     _createImg('imgs/12.jpg', ['funny']),
     _createImg('imgs/13.jpg', ['happy']),
     _createImg('imgs/14.jpg', ['funny']),
@@ -45,4 +45,20 @@ function findImg(imgId) {
 
 function getImgs() {
   return gImgs
+}
+
+function calcKeywordCount() {
+  const keywordCounts = {}
+
+  // Count keyword occurrences
+  gImgs.forEach((img) => {
+    img.keywords.forEach((keyword) => {
+      if (!keywordCounts[keyword]) {
+        keywordCounts[keyword] = 0
+      }
+      keywordCounts[keyword]++
+    })
+  })
+
+  return keywordCounts
 }

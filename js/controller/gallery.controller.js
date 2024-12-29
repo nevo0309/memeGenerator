@@ -1,6 +1,7 @@
 'use strict'
 
 let gCurrentImg = null
+const keywordContainer = document.querySelector('.filterby-name-select')
 
 function onInit() {
   makeInvisible()
@@ -162,3 +163,30 @@ function renderFilteredGallery(filteredImgs) {
   )
   elGallery.innerHTML = strHtmls.join('')
 }
+
+function scaleKeywords() {
+  const keywordCounts = calcKeywordCount()
+  const maxCount = Math.max(...Object.values(keywordCounts))
+  const minCount = Math.min(...Object.values(keywordCounts))
+
+  // Normalize sizes based on frequencies
+  const keywords = document.querySelectorAll('.filterby-name-select button')
+  keywords.forEach((keyword) => {
+    const count = keywordCounts[keyword.value] || 0
+    const scale = count === 0 ? 1 : 1 + (count + 5) / (maxCount - minCount)
+    keyword.style.transform = `scale(${scale})`
+    keyword.style.transition = 'transform 0.3s ease'
+  })
+}
+
+keywordContainer.addEventListener('mouseover', () => {
+  scaleKeywords()
+})
+
+keywordContainer.addEventListener('mouseleave', () => {
+  // Reset sizes on mouse leave
+  const keywords = document.querySelectorAll('.filterby-name-select button')
+  keywords.forEach((keyword) => {
+    keyword.style.transform = 'scale(1)'
+  })
+})
