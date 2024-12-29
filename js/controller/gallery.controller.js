@@ -152,7 +152,14 @@ function onKeyWordFilter(keyword) {
   const filteredImgs = gImgs.filter((img) => img.keywords.includes(keyword))
   renderFilteredGallery(filteredImgs)
 }
-
+function onFilterMeme(keyword) {
+  if (!keyword) {
+    renderGallery()
+  } else {
+    const filteredImgs = gImgs.filter((img) => img.keywords.includes(keyword))
+    renderFilteredGallery(filteredImgs)
+  }
+}
 function renderFilteredGallery(filteredImgs) {
   const elGallery = document.querySelector('.gallery')
 
